@@ -15,18 +15,16 @@ import { registerUser } from 'redux/actions';
 
 import IntlMessages from 'helpers/IntlMessages';
 import { Colxx } from 'components/common/CustomBootstrap';
-import { adminRoot } from 'constants/defaultValues';
 
-const Register = ({ history }) => {
-  const [email] = useState('demo@gogo.com');
-  const [password] = useState('gogo123');
-  const [name] = useState('Sarah Kortney');
+const Register = ({ registerUserAction, history }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
 
   const onUserRegister = () => {
     if (email !== '' && password !== '') {
-      history.push(adminRoot);
+      registerUserAction({ email, password, name }, history);
     }
-    // call registerUserAction()
   };
 
   return (
@@ -56,21 +54,33 @@ const Register = ({ history }) => {
                 <Label>
                   <IntlMessages id="user.fullname" />
                 </Label>
-                <Input type="name" defaultValue={name} />
+                <Input
+                  type="name"
+                  defaultValue={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
               </FormGroup>
 
               <FormGroup className="form-group has-float-label  mb-4">
                 <Label>
                   <IntlMessages id="user.email" />
                 </Label>
-                <Input type="email" defaultValue={email} />
+                <Input
+                  type="email"
+                  defaultValue={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </FormGroup>
 
               <FormGroup className="form-group has-float-label  mb-4">
                 <Label>
-                  <IntlMessages id="user.password" defaultValue={password} />
+                  <IntlMessages id="user.password" />
                 </Label>
-                <Input type="password" />
+                <Input
+                  type="password"
+                  defaultValue={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </FormGroup>
 
               <div className="d-flex justify-content-end align-items-center">

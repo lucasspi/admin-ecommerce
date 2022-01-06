@@ -2,6 +2,7 @@ import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 import { auth } from 'helpers/Firebase';
 import { adminRoot, currentUser } from 'constants/defaultValues';
 import { setCurrentUser } from 'helpers/Utils';
+import { storeUserInformationsAsync } from 'api/users';
 import {
   LOGIN_USER,
   REGISTER_USER,
@@ -40,6 +41,8 @@ function* loginWithEmailPassword({ payload }) {
     const loginUser = yield call(loginWithEmailPasswordAsync, email, password);
     if (!loginUser.message) {
       const item = { uid: loginUser.user.uid, ...currentUser };
+      console.log('item', item);
+
       setCurrentUser(item);
       yield put(loginUserSuccess(item));
       history.push(adminRoot);
@@ -64,7 +67,7 @@ const registerWithEmailPasswordAsync = async (email, password) =>
     .catch((error) => error);
 
 function* registerWithEmailPassword({ payload }) {
-  const { email, password } = payload.user;
+  const { email, password, name } = payload.user;
   const { history } = payload;
   try {
     const registerUser = yield call(
@@ -74,6 +77,11 @@ function* registerWithEmailPassword({ payload }) {
     );
     if (!registerUser.message) {
       const item = { uid: registerUser.user.uid, ...currentUser };
+      yield call(storeUserInformationsAsync, registerUser.user.uid, {
+        email,
+        password,
+        name,
+      });
       setCurrentUser(item);
       yield put(registerUserSuccess(item));
       history.push(adminRoot);

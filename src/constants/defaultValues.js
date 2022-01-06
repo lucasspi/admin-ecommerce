@@ -19,14 +19,14 @@ export const localeOptions = [
 ];
 
 export const firebaseConfig = {
-  apiKey: 'AIzaSyBBksq-Asxq2M4Ot-75X19IyrEYJqNBPcg',
-  authDomain: 'gogo-react-login.firebaseapp.com',
-  databaseURL: 'https://gogo-react-login.firebaseio.com',
-  projectId: 'gogo-react-login',
-  storageBucket: 'gogo-react-login.appspot.com',
-  messagingSenderId: '216495999563',
+  apiKey: 'AIzaSyCWtGqfJJUsIcUFdLkAmw1cFRlbdTdKsws',
+  authDomain: 'brains-spirandeli.firebaseapp.com',
+  projectId: 'brains-spirandeli',
+  storageBucket: 'brains-spirandeli.appspot.com',
+  messagingSenderId: '519680197958',
+  appId: '1:519680197958:web:9ec6f295577e840b481147',
+  measurementId: 'G-ENVSBQCMDP',
 };
-
 export const currentUser = {
   id: 1,
   title: 'Sarah Kortney',
@@ -42,20 +42,9 @@ export const servicePath = 'https://api.coloredstrategies.com';
 
 export const themeColorStorageKey = '__theme_selected_color';
 export const isMultiColorActive = true;
-export const defaultColor = 'light.purplemonster';
+export const defaultColor = 'light.blueyale';
 export const isDarkSwitchActive = true;
 export const defaultDirection = 'ltr';
 export const themeRadiusStorageKey = '__theme_radius';
 export const isAuthGuardActive = false;
-export const colors = [
-  'bluenavy',
-  'blueyale',
-  'blueolympic',
-  'greenmoss',
-  'greenlime',
-  'purplemonster',
-  'orangecarrot',
-  'redruby',
-  'yellowgranola',
-  'greysteel',
-];
+export const colors = ['blueyale'];
