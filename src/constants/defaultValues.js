@@ -11,11 +11,12 @@ export const defaultMenuType = 'menu-default';
 
 export const subHiddenBreakpoint = 1440;
 export const menuHiddenBreakpoint = 768;
-export const defaultLocale = 'en';
+export const defaultLocale = 'pt';
 export const localeOptions = [
   { id: 'en', name: 'English - LTR', direction: 'ltr' },
   { id: 'es', name: 'Español', direction: 'ltr' },
   { id: 'enrtl', name: 'English - RTL', direction: 'rtl' },
+  { id: 'pt', name: 'Portuguese', direction: 'ltr' },
 ];
 
 export const firebaseConfig = {
@@ -46,5 +47,5 @@ export const defaultColor = 'light.blueyale';
 export const isDarkSwitchActive = true;
 export const defaultDirection = 'ltr';
 export const themeRadiusStorageKey = '__theme_radius';
-export const isAuthGuardActive = false;
+export const isAuthGuardActive = true;
 export const colors = ['blueyale'];

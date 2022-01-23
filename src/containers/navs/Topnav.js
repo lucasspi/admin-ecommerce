@@ -20,7 +20,6 @@ import {
   menuHiddenBreakpoint,
   searchPath,
   localeOptions,
-  isDarkSwitchActive,
   buyUrl,
   adminRoot,
 } from 'constants/defaultValues';
@@ -35,7 +34,6 @@ import {
 
 import TopnavEasyAccess from './Topnav.EasyAccess';
 import TopnavNotifications from './Topnav.Notifications';
-import TopnavDarkSwitch from './Topnav.DarkSwitch';
 
 const TopNav = ({
   intl,
@@ -49,7 +47,6 @@ const TopNav = ({
   logoutUserAction,
   changeLocaleAction,
 }) => {
-  const [isInFullScreen, setIsInFullScreen] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState('');
 
   const search = () => {
@@ -67,17 +64,6 @@ const TopNav = ({
         window.location.reload();
       }, 500);
     }
-  };
-
-  const isInFullScreenFn = () => {
-    return (
-      (document.fullscreenElement && document.fullscreenElement !== null) ||
-      (document.webkitFullscreenElement &&
-        document.webkitFullscreenElement !== null) ||
-      (document.mozFullScreenElement &&
-        document.mozFullScreenElement !== null) ||
-      (document.msFullscreenElement && document.msFullscreenElement !== null)
-    );
   };
 
   const handleSearchIconClick = (e) => {
@@ -147,32 +133,6 @@ const TopNav = ({
     if (e.key === 'Enter') {
       search();
     }
-  };
-
-  const toggleFullScreen = () => {
-    const isFS = isInFullScreenFn();
-
-    const docElm = document.documentElement;
-    if (!isFS) {
-      if (docElm.requestFullscreen) {
-        docElm.requestFullscreen();
-      } else if (docElm.mozRequestFullScreen) {
-        docElm.mozRequestFullScreen();
-      } else if (docElm.webkitRequestFullScreen) {
-        docElm.webkitRequestFullScreen();
-      } else if (docElm.msRequestFullscreen) {
-        docElm.msRequestFullscreen();
-      }
-    } else if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
-    }
-    setIsInFullScreen(!isFS);
   };
 
   const handleLogout = () => {
@@ -279,22 +239,9 @@ const TopNav = ({
       </NavLink>
 
       <div className="navbar-right">
-        {isDarkSwitchActive && <TopnavDarkSwitch />}
         <div className="header-icons d-inline-block align-middle">
           <TopnavEasyAccess />
           <TopnavNotifications />
-          <button
-            className="header-icon btn btn-empty d-none d-sm-inline-block"
-            type="button"
-            id="fullScreenButton"
-            onClick={toggleFullScreen}
-          >
-            {isInFullScreen ? (
-              <i className="simple-icon-size-actual d-block" />
-            ) : (
-              <i className="simple-icon-size-fullscreen d-block" />
-            )}
-          </button>
         </div>
         <div className="user d-inline-block">
           <UncontrolledDropdown className="dropdown-menu-right">
